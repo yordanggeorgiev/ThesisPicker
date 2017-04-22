@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ThesisPicker</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Факултетен номер</string>
+    <string name="prompt_password">Парола</string>
+    <string name="action_sign_in">Вход</string>
+    <string name="action_sign_in_short">Вход</string>
+    <string name="error_invalid_email">Въведеният email адрес е невалиден</string>
+    <string name="error_invalid_password">Въведената парола е твърде кратка</string>
+    <string name="error_incorrect_password">Грешна парола</string>
+    <string name="error_field_required">Полето е задължително</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
