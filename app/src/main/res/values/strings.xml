@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ThesisPicker</string>
 
-    <!-- Strings related to login -->
+    <!-- Login screen-->
     <string name="prompt_email">Факултетен номер</string>
     <string name="prompt_password">Парола</string>
     <string name="action_sign_in">Вход</string>
@@ -11,6 +11,22 @@
     <string name="error_incorrect_password">Грешна парола</string>
     <string name="error_field_required">Полето е задължително</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--Menu items-->
+    <string name="menu_student_profile">Студентски профил</string>
+    <string name="menu_teachers">Преподаватели</string>
+    <string name="menu_theses">Дипломни задания</string>
+
+    <!--Students screen-->
+    <string name="student_fac_number">Фак.№:</string>
+    <string name="student_change_pass_btn">Смяна на парола</string>
+    <string name="student_chosen_thesis">Избрано задание:</string>
+    <string name="student_thesis_lead">Ръководител:</string>
+    <string name="student_finalize_btn">Финализиране на задание</string>
+
+    <!--Teachers screen-->
+    <string name="teacher_phone">Телефон за връзка:</string>
+    <string name="teacher_email">Еmail:</string>
+
+    <!--Common-->
+    <string name="name">Име и фамилия:</string>
 </resources>

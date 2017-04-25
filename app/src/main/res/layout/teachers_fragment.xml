@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Име и фамилия:" />
+        android:text="@string/teacher_name" />
 
     <TextView
         android:id="@+id/teacher_names"
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Телефон за връзка:" />
+        android:text="@string/teacher_phone" />
 
     <TextView
         android:id="@+id/teacher_number"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Еmail:" />
+        android:text="@string/teacher_email" />
 
     <TextView
         android:id="@+id/teacher_email"

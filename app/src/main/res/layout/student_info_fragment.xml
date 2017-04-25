@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Име и фамилия:" />
+        android:text="@string/name" />
 
     <TextView
         android:id="@+id/student_names"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Фак.№:" />
+        android:text="@string/student_fac_number" />
 
     <TextView
         android:id="@+id/fak_number"
@@ -35,13 +35,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Смяна на парола" />
+        android:text="@string/student_change_pass_btn" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Избрано задание:" />
+        android:text="@string/student_chosen_thesis" />
 
     <TextView
         android:id="@+id/thesis"
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Ръководител:" />
+        android:text="@string/student_thesis_lead" />
 
     <TextView
         android:id="@+id/lead"
@@ -66,6 +66,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Финализиране на задание" />
+        android:text="@string/student_finalize_btn" />
 
 </LinearLayout>
