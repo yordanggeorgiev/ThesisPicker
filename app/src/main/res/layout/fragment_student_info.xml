@@ -30,13 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp" />
 
-    <Button
-        android:id="@+id/btn_change_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/student_change_pass_btn" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,12 +65,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp" />
-
-    <Button
-        android:id="@+id/btn_finalize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/student_finalize_btn" />
 
 </LinearLayout>

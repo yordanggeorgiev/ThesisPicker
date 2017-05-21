@@ -134,7 +134,7 @@ public class LoginFragment extends Fragment implements Stackable, View.OnClickLi
             return;
         }
 
-        ((ThesisPickerActivity) getActivity()).getFragmentHelper().addFragment(new StudentInfoFragment());
+        ((ThesisPickerActivity) getActivity()).getFragmentHelper().addFragment(new StudentInfoFragment(), true);
 
         /*ProgressDialog pd = new ProgressDialog(getActivity());
         pd.setMessage(getActivity().getString(R.string.login_progress));

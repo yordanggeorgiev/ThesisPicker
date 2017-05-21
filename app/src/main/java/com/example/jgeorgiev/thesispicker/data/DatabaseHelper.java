@@ -17,9 +17,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     DatabaseContract.StudentsTable.COLUMN_NAME + " TEXT, " +
                     DatabaseContract.StudentsTable.COLUMN_FACULTY_NUMBER + " TEXT, " +
                     DatabaseContract.StudentsTable.COLUMN_PASSWORD + " TEXT, " +
-                    DatabaseContract.StudentsTable.COLUMN_THESIS + " INTEGER, " +
-                    DatabaseContract.StudentsTable.COLUMN_IS_FINALIZED + " INTEGER, FOREIGN KEY " +
-                    DatabaseContract.StudentsTable.COLUMN_THESIS + " REFERENCES " +
+                    DatabaseContract.StudentsTable.COLUMN_EGN + " INTEGER, " +
+                    DatabaseContract.StudentsTable.COLUMN_THESIS + " INTEGER, FOREIGN KEY (" +
+                    DatabaseContract.StudentsTable.COLUMN_THESIS + ") REFERENCES " +
                     DatabaseContract.ThesesTable.TABLE_NAME + " (" +
                     DatabaseContract.ThesesTable.COLUMN_THESIS_ID + "))";
 
@@ -36,8 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     DatabaseContract.ThesesTable.COLUMN_TITLE + " TEXT, " +
                     DatabaseContract.ThesesTable.COLUMN_DETAILS + " TEXT, " +
                     DatabaseContract.ThesesTable.COLUMN_LEAD + " INTEGER, " +
-                    DatabaseContract.ThesesTable.COLUMN_IS_PICKED + " INTEGER, FOREIGN KEY " +
-                    DatabaseContract.ThesesTable.COLUMN_LEAD + " REFERENCES " +
+                    DatabaseContract.ThesesTable.COLUMN_IS_PICKED + " INTEGER, FOREIGN KEY (" +
+                    DatabaseContract.ThesesTable.COLUMN_LEAD + ") REFERENCES " +
                     DatabaseContract.TeachersTable.TABLE_NAME + " (" +
                     DatabaseContract.TeachersTable.COLUMN_TEACHER_ID + "))";
 
@@ -61,6 +61,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_TEACHERS);
         db.execSQL(SQL_CREATE_TABLE_THESES);
         db.execSQL(SQL_CREATE_TABLE_STUDENTS);
+
+        db.execSQL("INSERT INTO students (student_id,name,egn,faculty_number,password,thesis) VALUES (1,'Иван Иванов',9301023447,121212121,12345678,1)");
+        db.execSQL("INSERT INTO teachers (teacher_id,name,email,phone) VALUES (1,'проф. Димитър Димитров','ddimitrov@gmail.com',0888987868)");
+        db.execSQL("INSERT INTO theses (thesis_id,title,details,lead,is_picked) VALUES (1,'Много сложна тема с кофти технологии','Тази тема е доста сложна и технологиите, които се използват в нея се използват само в НАСА',1,0)");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

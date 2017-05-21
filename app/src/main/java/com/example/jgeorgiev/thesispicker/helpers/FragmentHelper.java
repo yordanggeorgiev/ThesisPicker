@@ -45,7 +45,7 @@ public class FragmentHelper implements FragmentManager.OnBackStackChangedListene
                 .addToBackStack(fragment.getClass().getSimpleName()).commit();
     }
 
-    void addFragment(Fragment fragment, boolean removeAllFragments) {
+    public void addFragment(Fragment fragment, boolean removeAllFragments) {
         if (removeAllFragments) {
             removeAllFragments();
         }

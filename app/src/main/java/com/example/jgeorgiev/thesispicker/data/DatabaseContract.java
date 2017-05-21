@@ -14,10 +14,10 @@ public class DatabaseContract {
         public static final String TABLE_NAME = "students";
         public static final String COLUMN_STUDENT_ID = "student_id";
         public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_EGN = "egn";
         public static final String COLUMN_FACULTY_NUMBER = "faculty_number";
         public static final String COLUMN_PASSWORD = "password";
         public static final String COLUMN_THESIS = "thesis";
-        public static final String COLUMN_IS_FINALIZED = "is_finalized";
     }
 
     public static final class TeachersTable implements BaseColumns {
@@ -37,3 +37,4 @@ public class DatabaseContract {
         public static final String COLUMN_IS_PICKED = "is_picked";
     }
 }
+
