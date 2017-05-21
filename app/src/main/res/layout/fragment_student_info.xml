@@ -61,6 +61,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/student_thesis_reviewer" />
+
+    <TextView
+        android:id="@+id/reviewer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
     <Button
         android:id="@+id/btn_finalize"
         android:layout_width="match_parent"

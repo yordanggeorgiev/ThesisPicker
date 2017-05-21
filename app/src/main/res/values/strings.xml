@@ -2,25 +2,29 @@
     <string name="app_name">ThesisPicker</string>
 
     <!-- Login screen-->
-    <string name="prompt_email">Факултетен номер</string>
-    <string name="prompt_password">Парола</string>
-    <string name="action_sign_in">Вход</string>
-    <string name="action_sign_in_short">Вход</string>
+    <string name="login">Вписване</string>
+    <string name="login_progress">Вписване...</string>
+    <string name="login_egn">ЕГН/ЛНЧ</string>
+    <string name="login_password">Парола</string>
+    <string name="button_sign_in">Вход</string>
     <string name="error_invalid_email">Въведеният email адрес е невалиден</string>
     <string name="error_invalid_password">Въведената парола е твърде кратка</string>
     <string name="error_incorrect_password">Грешна парола</string>
     <string name="error_field_required">Полето е задължително</string>
 
-    <!--Menu items-->
+    <!--Menu-->
     <string name="menu_student_profile">Студентски профил</string>
     <string name="menu_teachers">Преподаватели</string>
     <string name="menu_theses">Дипломни задания</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!--Students screen-->
     <string name="student_fac_number">Фак.№:</string>
     <string name="student_change_pass_btn">Смяна на парола</string>
     <string name="student_chosen_thesis">Избрано задание:</string>
     <string name="student_thesis_lead">Ръководител:</string>
+    <string name="student_thesis_reviewer">Рецензент:</string>
     <string name="student_finalize_btn">Финализиране на задание</string>
 
     <!--Teachers screen-->
