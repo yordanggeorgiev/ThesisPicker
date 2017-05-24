@@ -7,9 +7,12 @@ package com.example.jgeorgiev.thesispicker.models;
 public class Student {
 
     public String name;
-    public String faculty_number;
+    public int facultyNumber;
+    public String specialty;
+    public int adminGroup;
+    public boolean isBachelor;
     public String thesis;
-    public boolean isFinalized;
+    public String reviewer;
 
     public String getName() {
         return name;
@@ -19,12 +22,36 @@ public class Student {
         this.name = name;
     }
 
-    public String getFaculty_number() {
-        return faculty_number;
+    public int getFacultyNumber() {
+        return facultyNumber;
     }
 
-    public void setFaculty_number(String faculty_number) {
-        this.faculty_number = faculty_number;
+    public void setFacultyNumber(int facultyNumber) {
+        this.facultyNumber = facultyNumber;
+    }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public int getAdminGroup() {
+        return adminGroup;
+    }
+
+    public void setAdminGroup(int adminGroup) {
+        this.adminGroup = adminGroup;
+    }
+
+    public boolean isBachelor() {
+        return isBachelor;
+    }
+
+    public void setBachelor(boolean bachelor) {
+        isBachelor = bachelor;
     }
 
     public String getThesis() {
@@ -35,11 +62,11 @@ public class Student {
         this.thesis = thesis;
     }
 
-    public boolean isFinalized() {
-        return isFinalized;
+    public String getReviewer() {
+        return reviewer;
     }
 
-    public void setFinalized(boolean finalized) {
-        isFinalized = finalized;
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
     }
 }

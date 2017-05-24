@@ -13,15 +13,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 
-import com.example.jgeorgiev.thesispicker.data.DatabaseHelper;
+import com.example.jgeorgiev.thesispicker.database.DatabaseHelper;
 import com.example.jgeorgiev.thesispicker.fragments.LoginFragment;
 import com.example.jgeorgiev.thesispicker.helpers.DrawerHelper;
 import com.example.jgeorgiev.thesispicker.helpers.FragmentHelper;
+import com.example.jgeorgiev.thesispicker.models.Student;
 
 
 public class ThesisPickerActivity extends AppCompatActivity {
 
     private static SQLiteDatabase database;
+    private static Student student;
 
     private DrawerLayout drawer;
     private InputMethodManager imm;
@@ -37,6 +39,14 @@ public class ThesisPickerActivity extends AppCompatActivity {
 
     public static void setDatabase(SQLiteDatabase database) {
         ThesisPickerActivity.database = database;
+    }
+
+    public static Student getStudent() {
+        return student;
+    }
+
+    public static void setStudent(Student student) {
+        ThesisPickerActivity.student = student;
     }
 
     @Override

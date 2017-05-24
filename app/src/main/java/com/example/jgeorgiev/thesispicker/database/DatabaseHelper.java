@@ -1,9 +1,15 @@
-package com.example.jgeorgiev.thesispicker.data;
+package com.example.jgeorgiev.thesispicker.database;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.jgeorgiev.thesispicker.models.Student;
+import com.example.jgeorgiev.thesispicker.models.Teacher;
+import com.example.jgeorgiev.thesispicker.models.Thesis;
+import com.example.jgeorgiev.thesispicker.utils.SampleData;
 
 /**
  * Created by jgeorgiev on 4/23/17.
@@ -14,29 +20,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE_STUDENTS =
             "CREATE TABLE IF NOT EXISTS " + DatabaseContract.StudentsTable.TABLE_NAME + " (" +
                     DatabaseContract.StudentsTable.COLUMN_STUDENT_ID + " INTEGER PRIMARY KEY, " +
-                    DatabaseContract.StudentsTable.COLUMN_NAME + " TEXT, " +
-                    DatabaseContract.StudentsTable.COLUMN_FACULTY_NUMBER + " TEXT, " +
-                    DatabaseContract.StudentsTable.COLUMN_PASSWORD + " TEXT, " +
-                    DatabaseContract.StudentsTable.COLUMN_EGN + " INTEGER, " +
-                    DatabaseContract.StudentsTable.COLUMN_THESIS + " INTEGER, FOREIGN KEY (" +
+                    DatabaseContract.StudentsTable.COLUMN_NAME + " TEXT NOT NULL, " +
+                    DatabaseContract.StudentsTable.COLUMN_FACULTY_NUMBER + " INTEGER UNIQUE NOT NULL, " +
+                    DatabaseContract.StudentsTable.COLUMN_SPECIALTY + " TEXT NOT NULL, " +
+                    DatabaseContract.StudentsTable.COLUMN_ADMINISTRATIVE_GROUP + " INTEGER NOT NULL, " +
+                    DatabaseContract.StudentsTable.COLUMN_IS_BACHELOR + " INTEGER NOT NULL, " +
+                    DatabaseContract.StudentsTable.COLUMN_EGN + " INTEGER UNIQUE NOT NULL, " +
+                    DatabaseContract.StudentsTable.COLUMN_THESIS + " INTEGER, " +
+                    DatabaseContract.StudentsTable.COLUMN_REVIEWER + " INTEGER, FOREIGN KEY (" +
                     DatabaseContract.StudentsTable.COLUMN_THESIS + ") REFERENCES " +
                     DatabaseContract.ThesesTable.TABLE_NAME + " (" +
-                    DatabaseContract.ThesesTable.COLUMN_THESIS_ID + "))";
+                    DatabaseContract.ThesesTable.COLUMN_THESIS_ID + "), FOREIGN KEY (" +
+                    DatabaseContract.StudentsTable.COLUMN_REVIEWER + ") REFERENCES " +
+                    DatabaseContract.TeachersTable.TABLE_NAME + " (" +
+                    DatabaseContract.TeachersTable.COLUMN_TEACHER_ID + "))";
 
     private static final String SQL_CREATE_TABLE_TEACHERS =
             "CREATE TABLE IF NOT EXISTS " + DatabaseContract.TeachersTable.TABLE_NAME + " (" +
                     DatabaseContract.TeachersTable.COLUMN_TEACHER_ID + " INTEGER PRIMARY KEY, " +
-                    DatabaseContract.TeachersTable.COLUMN_NAME + " TEXT, " +
+                    DatabaseContract.TeachersTable.COLUMN_NAME + " TEXT NOT NULL, " +
                     DatabaseContract.TeachersTable.COLUMN_EMAIL + " TEXT, " +
                     DatabaseContract.TeachersTable.COLUMN_PHONE + " TEXT)";
 
     private static final String SQL_CREATE_TABLE_THESES =
             "CREATE TABLE IF NOT EXISTS " + DatabaseContract.ThesesTable.TABLE_NAME + " (" +
                     DatabaseContract.ThesesTable.COLUMN_THESIS_ID + " INTEGER PRIMARY KEY," +
-                    DatabaseContract.ThesesTable.COLUMN_TITLE + " TEXT, " +
+                    DatabaseContract.ThesesTable.COLUMN_TITLE + " TEXT NOT NULL, " +
                     DatabaseContract.ThesesTable.COLUMN_DETAILS + " TEXT, " +
-                    DatabaseContract.ThesesTable.COLUMN_LEAD + " INTEGER, " +
-                    DatabaseContract.ThesesTable.COLUMN_IS_PICKED + " INTEGER, FOREIGN KEY (" +
+                    DatabaseContract.ThesesTable.COLUMN_LEAD + " INTEGER NOT NULL, " +
+                    DatabaseContract.ThesesTable.COLUMN_IS_PICKED + " INTEGER NOT NULL, FOREIGN KEY (" +
                     DatabaseContract.ThesesTable.COLUMN_LEAD + ") REFERENCES " +
                     DatabaseContract.TeachersTable.TABLE_NAME + " (" +
                     DatabaseContract.TeachersTable.COLUMN_TEACHER_ID + "))";
@@ -62,9 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_THESES);
         db.execSQL(SQL_CREATE_TABLE_STUDENTS);
 
-        db.execSQL("INSERT INTO students (student_id,name,egn,faculty_number,password,thesis) VALUES (1,'Иван Иванов',9301023447,121212121,12345678,1)");
-        db.execSQL("INSERT INTO teachers (teacher_id,name,email,phone) VALUES (1,'проф. Димитър Димитров','ddimitrov@gmail.com',0888987868)");
-        db.execSQL("INSERT INTO theses (thesis_id,title,details,lead,is_picked) VALUES (1,'Много сложна тема с кофти технологии','Тази тема е доста сложна и технологиите, които се използват в нея се използват само в НАСА',1,0)");
+        SampleData.InsertSampleData(db);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

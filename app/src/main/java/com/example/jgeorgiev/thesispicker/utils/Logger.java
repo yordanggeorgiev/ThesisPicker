@@ -1,8 +1,8 @@
-package com.example.jgeorgiev.thesispicker.Utils;
+package com.example.jgeorgiev.thesispicker.utils;
 
 import android.util.Log;
 
-import com.example.jgeorgiev.thesispicker.Interfaces.LogWrapper;
+import com.example.jgeorgiev.thesispicker.interfaces.LogWrapper;
 
 /**
  * Created by jgeorgiev on 5/21/17.

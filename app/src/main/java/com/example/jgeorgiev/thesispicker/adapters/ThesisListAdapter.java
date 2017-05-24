@@ -10,7 +10,7 @@ import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import com.example.jgeorgiev.thesispicker.R;
-import com.example.jgeorgiev.thesispicker.data.DatabaseContract;
+import com.example.jgeorgiev.thesispicker.database.DatabaseContract;
 
 /**
  * Created by jgeorgiev on 5/21/17.

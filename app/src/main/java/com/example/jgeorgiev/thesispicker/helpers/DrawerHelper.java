@@ -13,7 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
-import com.example.jgeorgiev.thesispicker.Utils.Logger;
+import com.example.jgeorgiev.thesispicker.utils.Logger;
 import com.example.jgeorgiev.thesispicker.fragments.LoginFragment;
 import com.example.jgeorgiev.thesispicker.fragments.StudentInfoFragment;
 

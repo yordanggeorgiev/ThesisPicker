@@ -17,7 +17,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.jgeorgiev.thesispicker.Interfaces.Stackable;
+import com.example.jgeorgiev.thesispicker.database.DatabaseHelper;
+import com.example.jgeorgiev.thesispicker.database.GetStudentInfoTask;
+import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
 
@@ -27,36 +29,36 @@ import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
 
 public class LoginFragment extends Fragment implements Stackable, View.OnClickListener {
 
-    private EditText fieldUsername;
-    private EditText fieldPassword;
-    private String username;
-    private String password;
-    private TextInputLayout usernameInputLayout;
-    private TextInputLayout passwordInputLayout;
+    private EditText fieldEgn;
+    private EditText fieldFacNumber;
+    private String egn;
+    private String facNumber;
+    private TextInputLayout egnInputLayout;
+    private TextInputLayout facNumberInputLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        usernameInputLayout = (TextInputLayout) view.findViewById(R.id.usernameInputLayout);
-        passwordInputLayout = (TextInputLayout) view.findViewById(R.id.passwordInputLayout);
+        egnInputLayout = (TextInputLayout) view.findViewById(R.id.egn_input_layout);
+        facNumberInputLayout = (TextInputLayout) view.findViewById(R.id.fac_number_input_layout);
 
-        fieldUsername = (EditText) view.findViewById(R.id.login_egn);
-        fieldPassword = (EditText) view.findViewById(R.id.login_password);
+        fieldEgn = (EditText) view.findViewById(R.id.login_egn);
+        fieldFacNumber = (EditText) view.findViewById(R.id.login_fac_num);
 
         final Button loginBtn = (Button) view.findViewById(R.id.login);
         loginBtn.setOnClickListener(this);
 
-        fieldPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        fieldFacNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    isPasswordValid();
+                    isFacNumberValid();
                 }
             }
         });
 
-        fieldPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        fieldFacNumber.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_GO) {
@@ -83,37 +85,37 @@ public class LoginFragment extends Fragment implements Stackable, View.OnClickLi
 
     @Override
     public void setupInitialState() {
-        fieldUsername.requestFocus();
+        fieldEgn.requestFocus();
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(fieldUsername, InputMethodManager.SHOW_IMPLICIT);
-        fieldUsername.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        imm.showSoftInput(fieldEgn, InputMethodManager.SHOW_IMPLICIT);
+        fieldEgn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                isUsernameValid();
+                isEgnValid();
             }
         });
     }
 
-    private boolean isUsernameValid() {
-        username = fieldUsername.getText().toString().trim();
-        if (TextUtils.isEmpty(username)) {
-            setError(usernameInputLayout, R.string.error_field_required);
+    private boolean isEgnValid() {
+        egn = fieldEgn.getText().toString().trim();
+        if (TextUtils.isEmpty(egn)) {
+            setError(egnInputLayout, R.string.error_field_required);
             return false;
         }
 
-        usernameInputLayout.setError(null);
+        egnInputLayout.setError(null);
 
         return true;
     }
 
-    private boolean isPasswordValid() {
-        password = fieldPassword.getText().toString().trim();
-        if (TextUtils.isEmpty(password)) {
-            setError(passwordInputLayout, R.string.error_field_required);
+    private boolean isFacNumberValid() {
+        facNumber = fieldFacNumber.getText().toString().trim();
+        if (TextUtils.isEmpty(facNumber)) {
+            setError(facNumberInputLayout, R.string.error_field_required);
             return false;
         }
 
-        passwordInputLayout.setError(null);
+        facNumberInputLayout.setError(null);
 
         return true;
     }
@@ -124,23 +126,21 @@ public class LoginFragment extends Fragment implements Stackable, View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        if (!isUsernameValid()) {
-            fieldUsername.requestFocus();
+        if (!isEgnValid()) {
+            fieldEgn.requestFocus();
             return;
         }
 
-        if (!isPasswordValid()) {
-            fieldPassword.requestFocus();
+        if (!isFacNumberValid()) {
+            fieldFacNumber.requestFocus();
             return;
         }
 
-        ((ThesisPickerActivity) getActivity()).getFragmentHelper().addFragment(new StudentInfoFragment(), true);
+        new GetStudentInfoTask(((ThesisPickerActivity) getActivity()), ThesisPickerActivity.getDatabase(), egn, facNumber).execute();
 
-        /*ProgressDialog pd = new ProgressDialog(getActivity());
-        pd.setMessage(getActivity().getString(R.string.login_progress));
-        pd.setCancelable(false);
-        pd.setIndeterminate(true);
-        pd.show();*/
+        if (ThesisPickerActivity.getStudent() != null){
+            ((ThesisPickerActivity) getActivity()).getFragmentHelper().addFragment(new StudentInfoFragment(), true);
+        }
     }
 }
 

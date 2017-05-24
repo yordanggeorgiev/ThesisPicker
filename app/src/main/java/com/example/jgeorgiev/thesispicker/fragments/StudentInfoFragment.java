@@ -9,16 +9,19 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
-import com.example.jgeorgiev.thesispicker.Interfaces.Stackable;
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
+import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
 
-public class StudentInfoFragment extends Fragment implements Stackable{
+public class StudentInfoFragment extends Fragment implements Stackable {
 
     private TextView student_names;
     private TextView faculty_number;
+    private TextView specialty;
+    private TextView adminGroup;
+    private TextView isBachelor;
     private TextView thesis;
-    private TextView thesis_lead;
+    private TextView thesisLead;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,8 +30,25 @@ public class StudentInfoFragment extends Fragment implements Stackable{
 
         student_names = (TextView) view.findViewById(R.id.student_names);
         faculty_number = (TextView) view.findViewById(R.id.fak_number);
+        specialty = (TextView) view.findViewById(R.id.specialty);
+        adminGroup = (TextView) view.findViewById(R.id.admin_group);
+        isBachelor = (TextView) view.findViewById(R.id.is_bachelor);
         thesis = (TextView) view.findViewById(R.id.thesis);
-        thesis_lead = (TextView) view.findViewById(R.id.lead);
+        thesisLead = (TextView) view.findViewById(R.id.lead);
+
+        if (ThesisPickerActivity.getStudent() != null) {
+            student_names.setText(ThesisPickerActivity.getStudent().getName());
+            faculty_number.setText(ThesisPickerActivity.getStudent().getFacultyNumber());
+            specialty.setText(ThesisPickerActivity.getStudent().getSpecialty());
+            adminGroup.setText(ThesisPickerActivity.getStudent().getAdminGroup());
+            if (ThesisPickerActivity.getStudent().isBachelor()) {
+                isBachelor.setText(R.string.student_bachelor);
+            } else {
+                isBachelor.setText(R.string.student_master);
+            }
+            thesis.setText(ThesisPickerActivity.getStudent().getThesis());
+            thesisLead.setText(ThesisPickerActivity.getStudent().getReviewer());
+        }
 
         return view;
     }

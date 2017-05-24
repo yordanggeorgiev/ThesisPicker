@@ -3,13 +3,12 @@
 
     <!-- Login screen-->
     <string name="login">Вписване</string>
-    <string name="login_progress">Вписване...</string>
-    <string name="login_egn">ЕГН/ЛНЧ</string>
-    <string name="login_password">Парола</string>
+    <string name="login_egn">ЕГН</string>
+    <string name="login_faculty_number">Факултетен номер</string>
     <string name="button_sign_in">Вход</string>
-    <string name="error_invalid_email">Въведеният email адрес е невалиден</string>
-    <string name="error_invalid_password">Въведената парола е твърде кратка</string>
-    <string name="error_incorrect_password">Грешна парола</string>
+    <string name="wait_message">Моля изчакайте...</string>
+    <string name="nonexistant_user">Грешни входни данни</string>
+    <string name="nonexistant_user_message">Потребител с въведените ЕГН и факултетен номер не съществува.</string>
     <string name="error_field_required">Полето е задължително</string>
 
     <!--Menu-->
@@ -21,11 +20,14 @@
 
     <!--Students screen-->
     <string name="student_fac_number">Фак.№:</string>
-    <string name="student_change_pass_btn">Смяна на парола</string>
+    <string name="student_specialty">Специалност:</string>
+    <string name="student_admin_group">Група:</string>
+    <string name="student_is_bachelor">Образователно-квалификационна степен:</string>
     <string name="student_chosen_thesis">Избрано задание:</string>
     <string name="student_thesis_lead">Ръководител:</string>
     <string name="student_thesis_reviewer">Рецензент:</string>
-    <string name="student_finalize_btn">Финализиране на задание</string>
+    <string name="student_bachelor">бакалавър</string>
+    <string name="student_master">магистър</string>
 
     <!--Teachers screen-->
     <string name="teacher_phone">Телефон за връзка:</string>

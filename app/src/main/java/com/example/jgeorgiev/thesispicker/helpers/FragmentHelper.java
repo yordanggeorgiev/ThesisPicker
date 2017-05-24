@@ -4,7 +4,7 @@ package com.example.jgeorgiev.thesispicker.helpers;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
-import com.example.jgeorgiev.thesispicker.Interfaces.Stackable;
+import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
 
