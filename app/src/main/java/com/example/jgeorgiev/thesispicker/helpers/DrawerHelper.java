@@ -13,9 +13,13 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
-import com.example.jgeorgiev.thesispicker.utils.Logger;
+import com.example.jgeorgiev.thesispicker.database.GetTeachersListTask;
+import com.example.jgeorgiev.thesispicker.database.GetThesisListTask;
 import com.example.jgeorgiev.thesispicker.fragments.LoginFragment;
 import com.example.jgeorgiev.thesispicker.fragments.StudentInfoFragment;
+import com.example.jgeorgiev.thesispicker.fragments.TeacherListFragment;
+import com.example.jgeorgiev.thesispicker.fragments.ThesisListFragment;
+import com.example.jgeorgiev.thesispicker.utils.Logger;
 
 
 /**
@@ -79,13 +83,13 @@ public class DrawerHelper implements NavigationView.OnNavigationItemSelectedList
                 }
                 break;
             case R.id.teachers:
-                if (!activity.getFragmentHelper().isVisibleFragment(StudentInfoFragment.class.getSimpleName())) {
-                    activity.getFragmentHelper().addFragment(new StudentInfoFragment(), true);
+                if (!activity.getFragmentHelper().isVisibleFragment(TeacherListFragment.class.getSimpleName())) {
+                    new GetTeachersListTask(activity, ThesisPickerActivity.getDatabase()).execute();
                 }
                 break;
             case R.id.theses:
-                if (!activity.getFragmentHelper().isVisibleFragment(StudentInfoFragment.class.getSimpleName())) {
-                    activity.getFragmentHelper().addFragment(new StudentInfoFragment(), true);
+                if (!activity.getFragmentHelper().isVisibleFragment(ThesisListFragment.class.getSimpleName())) {
+                    new GetThesisListTask(activity, ThesisPickerActivity.getDatabase()).execute();
                 }
                 break;
             default:

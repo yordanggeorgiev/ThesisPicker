@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
+import com.example.jgeorgiev.thesispicker.fragments.StudentInfoFragment;
 import com.example.jgeorgiev.thesispicker.models.Student;
 
 /**
@@ -70,6 +71,7 @@ public class GetStudentInfoTask extends AsyncTask<Void, Void, Student> {
             });
         } else {
             ThesisPickerActivity.setStudent(student);
+            activity.getFragmentHelper().addFragment(new StudentInfoFragment(), true);
         }
         super.onPostExecute(student);
     }

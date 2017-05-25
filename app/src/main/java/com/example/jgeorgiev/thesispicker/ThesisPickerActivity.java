@@ -18,12 +18,18 @@ import com.example.jgeorgiev.thesispicker.fragments.LoginFragment;
 import com.example.jgeorgiev.thesispicker.helpers.DrawerHelper;
 import com.example.jgeorgiev.thesispicker.helpers.FragmentHelper;
 import com.example.jgeorgiev.thesispicker.models.Student;
+import com.example.jgeorgiev.thesispicker.models.Teacher;
+import com.example.jgeorgiev.thesispicker.models.Thesis;
+
+import java.util.List;
 
 
 public class ThesisPickerActivity extends AppCompatActivity {
 
     private static SQLiteDatabase database;
     private static Student student;
+    private static List<Thesis> thesisList;
+    private static List<Teacher> teachersList;
 
     private DrawerLayout drawer;
     private InputMethodManager imm;
@@ -47,6 +53,22 @@ public class ThesisPickerActivity extends AppCompatActivity {
 
     public static void setStudent(Student student) {
         ThesisPickerActivity.student = student;
+    }
+
+    public static List<Thesis> getThesisList() {
+        return thesisList;
+    }
+
+    public static void setThesisList(List<Thesis> thesisList) {
+        ThesisPickerActivity.thesisList = thesisList;
+    }
+
+    public static List<Teacher> getTeachersList() {
+        return teachersList;
+    }
+
+    public static void setTeachersList(List<Teacher> teachersList) {
+        ThesisPickerActivity.teachersList = teachersList;
     }
 
     @Override
@@ -146,6 +168,8 @@ public class ThesisPickerActivity extends AppCompatActivity {
             getDatabase().close();
         }
         setDatabase(null);
+        setStudent(null);
+        setThesisList(null);
 
         if (getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null) {
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);

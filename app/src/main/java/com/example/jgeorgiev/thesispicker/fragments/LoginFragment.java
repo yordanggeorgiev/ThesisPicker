@@ -137,10 +137,6 @@ public class LoginFragment extends Fragment implements Stackable, View.OnClickLi
         }
 
         new GetStudentInfoTask(((ThesisPickerActivity) getActivity()), ThesisPickerActivity.getDatabase(), egn, facNumber).execute();
-
-        if (ThesisPickerActivity.getStudent() != null){
-            ((ThesisPickerActivity) getActivity()).getFragmentHelper().addFragment(new StudentInfoFragment(), true);
-        }
     }
 }
 

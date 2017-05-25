@@ -9,33 +9,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
-import com.example.jgeorgiev.thesispicker.adapters.ThesisListAdapter;
 import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
-import com.example.jgeorgiev.thesispicker.models.Thesis;
+import com.example.jgeorgiev.thesispicker.models.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThesisListFragment extends Fragment implements Stackable {
+public class TeacherListFragment extends Fragment implements Stackable {
 
-    List<Thesis> thesisList = new ArrayList<>();
+    List<String> teachersNames = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_thesis_list, container, false);
 
-        if (ThesisPickerActivity.getThesisList() != null) {
-            thesisList = ThesisPickerActivity.getThesisList();
+        if (ThesisPickerActivity.getTeachersList() != null) {
+            List<Teacher> teachersList = ThesisPickerActivity.getTeachersList();
+            for (Teacher teacher : teachersList) {
+                teachersNames.add(teacher.getName());
+            }
         }
 
-        ThesisListAdapter thesisListAdapter = new ThesisListAdapter(getActivity(), R.layout.fragment_thesis_list, thesisList);
+        ArrayAdapter<String> teachersNamesAdapter = new ArrayAdapter<>(getActivity(), R.layout.teacher_list_entries, R.id.teacher_name, teachersNames);
         ListView lv = (ListView) view.findViewById(R.id.thesis_list);
-        lv.setAdapter(thesisListAdapter);
+        lv.setAdapter(teachersNamesAdapter);
 
         return view;
     }
@@ -46,7 +49,7 @@ public class ThesisListFragment extends Fragment implements Stackable {
         if (actionBar != null) {
             actionBar.show();
         }
-        ((ThesisPickerActivity) getActivity()).createMaterialToolbar(false, getActivity().getString(R.string.menu_theses));
+        ((ThesisPickerActivity) getActivity()).createMaterialToolbar(false, getActivity().getString(R.string.menu_teachers));
         ((ThesisPickerActivity) getActivity()).getDrawerHelper().lockDrawer();
     }
 

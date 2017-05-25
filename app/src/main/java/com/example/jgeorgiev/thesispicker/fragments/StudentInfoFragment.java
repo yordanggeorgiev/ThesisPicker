@@ -13,6 +13,8 @@ import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
 import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
 
+import java.util.Locale;
+
 public class StudentInfoFragment extends Fragment implements Stackable {
 
     private TextView student_names;
@@ -38,9 +40,9 @@ public class StudentInfoFragment extends Fragment implements Stackable {
 
         if (ThesisPickerActivity.getStudent() != null) {
             student_names.setText(ThesisPickerActivity.getStudent().getName());
-            faculty_number.setText(ThesisPickerActivity.getStudent().getFacultyNumber());
+            faculty_number.setText(String.valueOf(ThesisPickerActivity.getStudent().getFacultyNumber()));
             specialty.setText(ThesisPickerActivity.getStudent().getSpecialty());
-            adminGroup.setText(ThesisPickerActivity.getStudent().getAdminGroup());
+            adminGroup.setText(String.valueOf(ThesisPickerActivity.getStudent().getAdminGroup()));
             if (ThesisPickerActivity.getStudent().isBachelor()) {
                 isBachelor.setText(R.string.student_bachelor);
             } else {

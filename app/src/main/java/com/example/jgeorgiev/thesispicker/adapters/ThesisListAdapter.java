@@ -1,50 +1,60 @@
 package com.example.jgeorgiev.thesispicker.adapters;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.jgeorgiev.thesispicker.R;
-import com.example.jgeorgiev.thesispicker.database.DatabaseContract;
+import com.example.jgeorgiev.thesispicker.models.Thesis;
+
+import java.util.List;
 
 /**
- * Created by jgeorgiev on 5/21/17.
+ * Created by ygeorgiev on 25-May-17.
  */
 
-public class ThesisListAdapter extends CursorAdapter{
+public class ThesisListAdapter extends ArrayAdapter<Thesis> {
 
-    public ThesisListAdapter(Context context, Cursor c, int flags) {
-        super(context, c, flags);
+    public ThesisListAdapter(Context context, int textViewResourceId) {
+        super(context, textViewResourceId);
     }
 
+    public ThesisListAdapter(Context context, int resource, List<Thesis> theses) {
+        super(context, resource, theses);
+    }
+
+    @NonNull
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-        if(cursor.getPosition()%2==1) {
-            view.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+        View v = convertView;
+
+        if (v == null) {
+            LayoutInflater vi;
+            vi = LayoutInflater.from(getContext());
+            v = vi.inflate(R.layout.thesis_list_entries, null);
         }
-        else {
-            view.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
+
+        Thesis t = getItem(position);
+
+        if (t != null) {
+            TextView tt1 = (TextView) v.findViewById(R.id.thesis_title);
+            TextView tt2 = (TextView) v.findViewById(R.id.thesis_lead);
+
+            if (tt1 != null) {
+                tt1.setText(t.getTitle());
+            }
+
+            if (tt2 != null) {
+                tt2.setText(t.getLead());
+            }
         }
 
-        TextView thesisTitleTV = (TextView) view.findViewById(R.id.thesis_title);
-        TextView thesisLeadTV = (TextView) view.findViewById(R.id.thesis_lead);
-
-        String thesisTitle = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.ThesesTable.COLUMN_TITLE));
-        Integer thesisLead = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseContract.ThesesTable.COLUMN_LEAD));
-
-        thesisTitleTV.setText(thesisTitle);
-        thesisLeadTV.setText(String.valueOf(thesisLead));
-
+        return v;
     }
 
-    @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.thesis_list_entries, parent, false);
-    }
 }
