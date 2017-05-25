@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="30dp"
-    android:layout_marginRight="30dp"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
         android:layout_marginTop="30dp"
         android:text="@string/name" />
 
@@ -16,90 +17,121 @@
         android:id="@+id/student_names"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/student_fac_number" />
 
     <TextView
         android:id="@+id/fak_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/student_specialty" />
 
     <TextView
         android:id="@+id/specialty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/student_admin_group" />
 
     <TextView
         android:id="@+id/admin_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/student_is_bachelor" />
 
     <TextView
         android:id="@+id/is_bachelor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/student_chosen_thesis" />
 
     <TextView
         android:id="@+id/thesis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/student_thesis_lead" />
 
     <TextView
         android:id="@+id/lead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/student_thesis_reviewer" />
 
     <TextView
         android:id="@+id/reviewer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
 </LinearLayout>

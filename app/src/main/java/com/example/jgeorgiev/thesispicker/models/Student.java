@@ -11,7 +11,7 @@ public class Student {
     public String specialty;
     public int adminGroup;
     public boolean isBachelor;
-    public String thesis;
+    public Thesis thesis;
     public String reviewer;
 
     public String getName() {
@@ -54,11 +54,11 @@ public class Student {
         isBachelor = bachelor;
     }
 
-    public String getThesis() {
+    public Thesis getThesis() {
         return thesis;
     }
 
-    public void setThesis(String thesis) {
+    public void setThesis(Thesis thesis) {
         this.thesis = thesis;
     }
 

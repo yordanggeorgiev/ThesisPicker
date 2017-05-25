@@ -56,11 +56,7 @@ public class DatabaseUtils {
             } else {
                 student.setBachelor(false);
             }
-
-            Thesis thesis = getPickedThesis(db, cursor.getInt(cursor.getColumnIndex(DatabaseContract.StudentsTable.COLUMN_THESIS)));
-            if (thesis != null) {
-                student.setThesis(thesis.getTitle());
-            }
+            student.setThesis(getPickedThesis(db, cursor.getInt(cursor.getColumnIndex(DatabaseContract.StudentsTable.COLUMN_THESIS))));
             student.setReviewer(getTeacherName(db, cursor.getInt(cursor.getColumnIndex(DatabaseContract.StudentsTable.COLUMN_REVIEWER))));
 
             cursor.close();
@@ -78,7 +74,9 @@ public class DatabaseUtils {
 
         String[] columns = {
                 DatabaseContract.ThesesTable.COLUMN_TITLE,
-                DatabaseContract.ThesesTable.COLUMN_LEAD
+                DatabaseContract.ThesesTable.COLUMN_DETAILS,
+                DatabaseContract.ThesesTable.COLUMN_LEAD,
+                DatabaseContract.ThesesTable.COLUMN_IS_PICKED
         };
 
         String selection = DatabaseContract.ThesesTable.COLUMN_THESIS_ID + " = ?";
@@ -95,8 +93,13 @@ public class DatabaseUtils {
 
         if (cursor.getCount() > 0 && cursor.moveToFirst()) {
             pickedThesis.setTitle(cursor.getString(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_TITLE)));
+            pickedThesis.setDetails(cursor.getString(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_DETAILS)));
             pickedThesis.setLead(getTeacherName(db, cursor.getInt(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_LEAD))));
-
+            if (cursor.getInt(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_DETAILS)) == 1) {
+                pickedThesis.setPicked(true);
+            } else {
+                pickedThesis.setPicked(false);
+            }
             cursor.close();
 
             return pickedThesis;

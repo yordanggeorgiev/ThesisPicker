@@ -13,8 +13,6 @@ import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
 import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
 
-import java.util.Locale;
-
 public class StudentInfoFragment extends Fragment implements Stackable {
 
     private TextView student_names;
@@ -24,6 +22,7 @@ public class StudentInfoFragment extends Fragment implements Stackable {
     private TextView isBachelor;
     private TextView thesis;
     private TextView thesisLead;
+    private TextView reviewer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +36,7 @@ public class StudentInfoFragment extends Fragment implements Stackable {
         isBachelor = (TextView) view.findViewById(R.id.is_bachelor);
         thesis = (TextView) view.findViewById(R.id.thesis);
         thesisLead = (TextView) view.findViewById(R.id.lead);
+        reviewer = (TextView) view.findViewById(R.id.reviewer);
 
         if (ThesisPickerActivity.getStudent() != null) {
             student_names.setText(ThesisPickerActivity.getStudent().getName());
@@ -48,21 +48,12 @@ public class StudentInfoFragment extends Fragment implements Stackable {
             } else {
                 isBachelor.setText(R.string.student_master);
             }
-            thesis.setText(ThesisPickerActivity.getStudent().getThesis());
-            thesisLead.setText(ThesisPickerActivity.getStudent().getReviewer());
+            thesis.setText(ThesisPickerActivity.getStudent().getThesis().getTitle());
+            thesisLead.setText(ThesisPickerActivity.getStudent().getThesis().getLead());
+            reviewer.setText(ThesisPickerActivity.getStudent().getReviewer());
         }
 
         return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     @Override
