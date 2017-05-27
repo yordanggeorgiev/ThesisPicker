@@ -32,7 +32,10 @@
     <!--Teachers screen-->
     <string name="teacher_phone">Телефон за връзка:</string>
     <string name="teacher_email">Еmail:</string>
+    <string name="nonexistant_teacher_info">Неналични данни.</string>
+    <string name="nonexistant_teacher_info_message">Няма налични данни за избрания преподавател.</string>
 
     <!--Common-->
     <string name="name">Име и фамилия:</string>
+    <string name="close">Затвори</string>
 </resources>

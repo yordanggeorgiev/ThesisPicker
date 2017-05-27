@@ -12,11 +12,12 @@ import android.widget.TextView;
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
 import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
+import com.example.jgeorgiev.thesispicker.models.Thesis;
 
 public class StudentInfoFragment extends Fragment implements Stackable {
 
-    private TextView student_names;
-    private TextView faculty_number;
+    private TextView studentNames;
+    private TextView facultyNumber;
     private TextView specialty;
     private TextView adminGroup;
     private TextView isBachelor;
@@ -29,8 +30,8 @@ public class StudentInfoFragment extends Fragment implements Stackable {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_info, container, false);
 
-        student_names = (TextView) view.findViewById(R.id.student_names);
-        faculty_number = (TextView) view.findViewById(R.id.fak_number);
+        studentNames = (TextView) view.findViewById(R.id.student_names);
+        facultyNumber = (TextView) view.findViewById(R.id.fak_number);
         specialty = (TextView) view.findViewById(R.id.specialty);
         adminGroup = (TextView) view.findViewById(R.id.admin_group);
         isBachelor = (TextView) view.findViewById(R.id.is_bachelor);
@@ -39,8 +40,8 @@ public class StudentInfoFragment extends Fragment implements Stackable {
         reviewer = (TextView) view.findViewById(R.id.reviewer);
 
         if (ThesisPickerActivity.getStudent() != null) {
-            student_names.setText(ThesisPickerActivity.getStudent().getName());
-            faculty_number.setText(String.valueOf(ThesisPickerActivity.getStudent().getFacultyNumber()));
+            studentNames.setText(ThesisPickerActivity.getStudent().getName());
+            facultyNumber.setText(String.valueOf(ThesisPickerActivity.getStudent().getFacultyNumber()));
             specialty.setText(ThesisPickerActivity.getStudent().getSpecialty());
             adminGroup.setText(String.valueOf(ThesisPickerActivity.getStudent().getAdminGroup()));
             if (ThesisPickerActivity.getStudent().isBachelor()) {
@@ -48,9 +49,12 @@ public class StudentInfoFragment extends Fragment implements Stackable {
             } else {
                 isBachelor.setText(R.string.student_master);
             }
-            thesis.setText(ThesisPickerActivity.getStudent().getThesis().getTitle());
-            thesisLead.setText(ThesisPickerActivity.getStudent().getThesis().getLead());
-            reviewer.setText(ThesisPickerActivity.getStudent().getReviewer());
+            Thesis studentThesis = ThesisPickerActivity.getStudent().getThesis();
+            if (studentThesis != null) {
+                thesis.setText(ThesisPickerActivity.getStudent().getThesis().getTitle());
+                thesisLead.setText(ThesisPickerActivity.getStudent().getThesis().getLead());
+                reviewer.setText(ThesisPickerActivity.getStudent().getReviewer());
+            }
         }
 
         return view;

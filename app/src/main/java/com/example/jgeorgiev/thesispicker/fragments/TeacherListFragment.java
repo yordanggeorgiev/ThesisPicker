@@ -9,11 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
+import com.example.jgeorgiev.thesispicker.database.GetTeacherInfoTask;
 import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
 import com.example.jgeorgiev.thesispicker.models.Teacher;
 
@@ -39,6 +41,16 @@ public class TeacherListFragment extends Fragment implements Stackable {
         ArrayAdapter<String> teachersNamesAdapter = new ArrayAdapter<>(getActivity(), R.layout.teacher_list_entries, R.id.teacher_name, teachersNames);
         ListView lv = (ListView) view.findViewById(R.id.thesis_list);
         lv.setAdapter(teachersNamesAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3)
+            {
+                String teacher = (String) adapter.getItemAtPosition(position);
+                new GetTeacherInfoTask((ThesisPickerActivity) getActivity(), ThesisPickerActivity.getDatabase(), teacher).execute();
+            }
+        });
 
         return view;
     }

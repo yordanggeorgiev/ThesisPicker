@@ -237,4 +237,39 @@ public class DatabaseUtils {
         db.update(DatabaseContract.ThesesTable.TABLE_NAME, values, DatabaseContract.ThesesTable.COLUMN_THESIS_ID + " = ?",
                 new String[]{String.valueOf(thesisId)});
     }
+
+    public static Teacher getTeacherInfo(SQLiteDatabase db, String teacher) {
+
+        String[] columns = {
+                DatabaseContract.TeachersTable.COLUMN_NAME,
+                DatabaseContract.TeachersTable.COLUMN_EMAIL,
+                DatabaseContract.TeachersTable.COLUMN_PHONE
+        };
+
+        String selection = DatabaseContract.TeachersTable.COLUMN_NAME + " = ?";
+
+        String[] selectionArgs = {teacher};
+
+        Cursor cursor = db.query(DatabaseContract.TeachersTable.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            Teacher resultTeacher = new Teacher();
+            resultTeacher.setName(cursor.getString(cursor.getColumnIndex(DatabaseContract.TeachersTable.COLUMN_NAME)));
+            resultTeacher.setEmail(cursor.getString(cursor.getColumnIndex(DatabaseContract.TeachersTable.COLUMN_EMAIL)));
+            resultTeacher.setPhone(cursor.getString(cursor.getColumnIndex(DatabaseContract.TeachersTable.COLUMN_PHONE)));
+
+            cursor.close();
+
+            return resultTeacher;
+        } else {
+            cursor.close();
+            return null;
+        }
+    }
 }
