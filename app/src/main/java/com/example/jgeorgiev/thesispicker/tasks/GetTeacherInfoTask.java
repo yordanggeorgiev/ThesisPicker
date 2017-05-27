@@ -9,7 +9,6 @@ import android.os.AsyncTask;
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
 import com.example.jgeorgiev.thesispicker.database.DatabaseUtils;
-import com.example.jgeorgiev.thesispicker.fragments.StudentInfoFragment;
 import com.example.jgeorgiev.thesispicker.fragments.TeacherInfoFragment;
 import com.example.jgeorgiev.thesispicker.models.Teacher;
 
@@ -71,8 +70,6 @@ public class GetTeacherInfoTask extends AsyncTask<Void, Void, Teacher> {
                 }
             });
         } else {
-            activity.getFragmentHelper().addFragment(new StudentInfoFragment(), true);
-
             TeacherInfoFragment tif = TeacherInfoFragment.init(teacher);
             tif.show(activity.getFragmentManager(), tif.getClass().getSimpleName());
         }

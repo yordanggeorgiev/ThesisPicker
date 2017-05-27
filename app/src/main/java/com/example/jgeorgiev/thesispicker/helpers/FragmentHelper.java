@@ -51,7 +51,7 @@ public class FragmentHelper implements FragmentManager.OnBackStackChangedListene
         addFragment(fragment);
     }
 
-    public void removeAllFragments() {
+    private void removeAllFragments() {
         if (activity.isFinishing() || activity.isDestroyed()) {
             return;
         }
