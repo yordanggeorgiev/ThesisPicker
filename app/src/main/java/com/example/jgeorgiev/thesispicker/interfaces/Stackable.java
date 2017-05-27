@@ -1,9 +1,9 @@
 package com.example.jgeorgiev.thesispicker.interfaces;
 
 /**
- * Created by jgeorgiev on 5/21/17.
+ * Stackable interface
+ * Created by ygeorgiev on 21-May-17.
  */
-
 public interface Stackable {
 
     void setupActionBar();

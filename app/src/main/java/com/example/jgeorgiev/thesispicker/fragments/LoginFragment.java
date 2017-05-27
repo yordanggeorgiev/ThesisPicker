@@ -17,16 +17,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.jgeorgiev.thesispicker.database.DatabaseHelper;
-import com.example.jgeorgiev.thesispicker.database.GetStudentInfoTask;
-import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
+import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
+import com.example.jgeorgiev.thesispicker.tasks.GetStudentInfoTask;
 
 /**
+ * Fragment for user login
  * Created by jgeorgiev on 5/21/17.
  */
-
 public class LoginFragment extends Fragment implements Stackable, View.OnClickListener {
 
     private EditText fieldEgn;

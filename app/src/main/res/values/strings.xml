@@ -23,7 +23,7 @@
     <string name="student_specialty">Специалност:</string>
     <string name="student_admin_group">Група:</string>
     <string name="student_is_bachelor">Образователно-квалификационна степен:</string>
-    <string name="student_chosen_thesis">Избрано задание:</string>
+    <string name="student_chosen_thesis">Избрано дипломно задание:</string>
     <string name="student_thesis_lead">Ръководител:</string>
     <string name="student_thesis_reviewer">Рецензент:</string>
     <string name="student_bachelor">бакалавър</string>
@@ -32,10 +32,19 @@
     <!--Teachers screen-->
     <string name="teacher_phone">Телефон за връзка:</string>
     <string name="teacher_email">Еmail:</string>
-    <string name="nonexistant_teacher_info">Неналични данни.</string>
     <string name="nonexistant_teacher_info_message">Няма налични данни за избрания преподавател.</string>
+
+    <!--Thesis screen-->
+    <string name="thesis_title">Дипломно задание:</string>
+    <string name="thesis_details">Детайли:</string>
+    <string name="thesis_lead">Ръководител:</string>
+    <string name="nonexistant_thesis_info_message">Няма налични данни за избраната тема.</string>
+    <string name="button_choose">Избери</string>
+    <string name="thesis_already_picked">Дипломното задание вече е избрано или вие имате записана друга тема.</string>
+    <string name="thesis_picked">Успешно избрахте дипломното задание.</string>
 
     <!--Common-->
     <string name="name">Име и фамилия:</string>
     <string name="close">Затвори</string>
+    <string name="nonexistant_info">Неналични данни.</string>
 </resources>

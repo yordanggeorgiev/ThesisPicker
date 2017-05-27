@@ -1,4 +1,4 @@
-package com.example.jgeorgiev.thesispicker.database;
+package com.example.jgeorgiev.thesispicker.tasks;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -8,29 +8,31 @@ import android.os.AsyncTask;
 
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
+import com.example.jgeorgiev.thesispicker.database.DatabaseUtils;
 import com.example.jgeorgiev.thesispicker.fragments.StudentInfoFragment;
-import com.example.jgeorgiev.thesispicker.fragments.TeacherInfoFragment;
-import com.example.jgeorgiev.thesispicker.models.Teacher;
+import com.example.jgeorgiev.thesispicker.fragments.ThesisInfoFragment;
+import com.example.jgeorgiev.thesispicker.models.Thesis;
 
 /**
+ * Async task to get thesis info from db
  * Created by jgeorgiev on 5/24/17.
  */
 
-public class GetTeacherInfoTask extends AsyncTask<Void, Void, Teacher> {
+public class GetThesisInfoTask extends AsyncTask<Void, Void, Thesis> {
 
     private ThesisPickerActivity activity;
     private SQLiteDatabase database;
-    private String teacher;
+    private Thesis thesis;
     private ProgressDialog pd;
 
 
-    public GetTeacherInfoTask(ThesisPickerActivity activity, SQLiteDatabase database, String teacher) {
+    public GetThesisInfoTask(ThesisPickerActivity activity, SQLiteDatabase database, Thesis thesis) {
         if (database == null) {
             throw new AssertionError("Database is required.");
         }
         this.activity = activity;
         this.database = database;
-        this.teacher = teacher;
+        this.thesis = thesis;
     }
 
     @Override
@@ -44,18 +46,18 @@ public class GetTeacherInfoTask extends AsyncTask<Void, Void, Teacher> {
     }
 
     @Override
-    protected Teacher doInBackground(Void... objects) {
-        return database.isOpen() ? DatabaseUtils.getTeacherInfo(database, teacher) : null;
+    protected Thesis doInBackground(Void... objects) {
+        return database.isOpen() ? DatabaseUtils.getThesisInfo(database, thesis) : null;
     }
 
     @Override
-    protected void onPostExecute(Teacher teacher) {
+    protected void onPostExecute(Thesis thesis) {
         pd.dismiss();
-        if (teacher == null) {
+        if (thesis == null) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setCancelable(false);
-            builder.setTitle(R.string.nonexistant_teacher_info);
-            builder.setMessage(R.string.nonexistant_teacher_info_message);
+            builder.setTitle(R.string.nonexistant_info);
+            builder.setMessage(R.string.nonexistant_thesis_info_message);
             builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -71,10 +73,10 @@ public class GetTeacherInfoTask extends AsyncTask<Void, Void, Teacher> {
         } else {
             activity.getFragmentHelper().addFragment(new StudentInfoFragment(), true);
 
-            TeacherInfoFragment tif = TeacherInfoFragment.init(teacher);
-            tif.show(activity.getFragmentManager(), tif.getClass().getSimpleName());
+            ThesisInfoFragment thif = ThesisInfoFragment.init(thesis);
+            thif.show(activity.getFragmentManager(), thif.getClass().getSimpleName());
         }
-        super.onPostExecute(teacher);
+        super.onPostExecute(thesis);
     }
 }
 

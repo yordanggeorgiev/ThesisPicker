@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * DatabaseUtils containing queries to the SQLiteDatabase
  * Created by jgeorgiev on 5/24/17.
  */
 
@@ -62,78 +63,6 @@ public class DatabaseUtils {
             cursor.close();
 
             return student;
-        } else {
-            cursor.close();
-
-            return null;
-        }
-    }
-
-    public static Thesis getPickedThesis(SQLiteDatabase db, int thesisId) {
-        Thesis pickedThesis = new Thesis();
-
-        String[] columns = {
-                DatabaseContract.ThesesTable.COLUMN_TITLE,
-                DatabaseContract.ThesesTable.COLUMN_DETAILS,
-                DatabaseContract.ThesesTable.COLUMN_LEAD,
-                DatabaseContract.ThesesTable.COLUMN_IS_PICKED
-        };
-
-        String selection = DatabaseContract.ThesesTable.COLUMN_THESIS_ID + " = ?";
-
-        String[] selectionArgs = {Integer.toString(thesisId)};
-
-        Cursor cursor = db.query(DatabaseContract.ThesesTable.TABLE_NAME,
-                columns,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                null);
-
-        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
-            pickedThesis.setTitle(cursor.getString(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_TITLE)));
-            pickedThesis.setDetails(cursor.getString(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_DETAILS)));
-            pickedThesis.setLead(getTeacherName(db, cursor.getInt(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_LEAD))));
-            if (cursor.getInt(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_DETAILS)) == 1) {
-                pickedThesis.setPicked(true);
-            } else {
-                pickedThesis.setPicked(false);
-            }
-            cursor.close();
-
-            return pickedThesis;
-        } else {
-            cursor.close();
-
-            return null;
-        }
-    }
-
-    public static String getTeacherName(SQLiteDatabase db, int teacherId) {
-
-        String[] columns = {
-                DatabaseContract.TeachersTable.COLUMN_NAME
-        };
-
-        String selection = DatabaseContract.TeachersTable.COLUMN_TEACHER_ID + " = ?";
-
-        String[] selectionArgs = {Integer.toString(teacherId)};
-
-        Cursor cursor = db.query(DatabaseContract.TeachersTable.TABLE_NAME,
-                columns,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                null);
-
-        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
-            String teacherName = cursor.getString(cursor.getColumnIndex(DatabaseContract.TeachersTable.COLUMN_NAME));
-
-            cursor.close();
-
-            return teacherName;
         } else {
             cursor.close();
 
@@ -217,25 +146,25 @@ public class DatabaseUtils {
         return teachersList;
     }
 
-    public static void updateStudentData(SQLiteDatabase db, int facNumber, int thesisId, int reviewerId) {
+    public static String updateStudentData(SQLiteDatabase db, int facNumber, Thesis thesis) {
+        int randomTeacherId = getTeacherId(db, thesis.getLead());
+
         ContentValues values = new ContentValues();
-        values.put(DatabaseContract.StudentsTable.COLUMN_THESIS, thesisId);
-        values.put(DatabaseContract.StudentsTable.COLUMN_REVIEWER, reviewerId);
+        values.put(DatabaseContract.StudentsTable.COLUMN_THESIS, getThesisId(db, thesis));
+        values.put(DatabaseContract.StudentsTable.COLUMN_REVIEWER, randomTeacherId);
 
         db.update(DatabaseContract.StudentsTable.TABLE_NAME, values, DatabaseContract.StudentsTable.COLUMN_FACULTY_NUMBER + " = ?",
                 new String[]{String.valueOf(facNumber)});
+
+        return getTeacherName(db, randomTeacherId);
     }
 
-    public static void updateThesisData(SQLiteDatabase db, int thesisId, boolean isPicked) {
+    public static void updateThesisData(SQLiteDatabase db, Thesis thesis) {
         ContentValues values = new ContentValues();
-        if (isPicked) {
-            values.put(DatabaseContract.ThesesTable.COLUMN_IS_PICKED, 1);
-        } else {
-            values.put(DatabaseContract.ThesesTable.COLUMN_IS_PICKED, 0);
-        }
+        values.put(DatabaseContract.ThesesTable.COLUMN_IS_PICKED, 1);
 
-        db.update(DatabaseContract.ThesesTable.TABLE_NAME, values, DatabaseContract.ThesesTable.COLUMN_THESIS_ID + " = ?",
-                new String[]{String.valueOf(thesisId)});
+        db.update(DatabaseContract.ThesesTable.TABLE_NAME, values, DatabaseContract.ThesesTable.COLUMN_TITLE + " = ?",
+                new String[]{String.valueOf(thesis.getTitle())});
     }
 
     public static Teacher getTeacherInfo(SQLiteDatabase db, String teacher) {
@@ -270,6 +199,166 @@ public class DatabaseUtils {
         } else {
             cursor.close();
             return null;
+        }
+    }
+
+    public static Thesis getThesisInfo(SQLiteDatabase db, Thesis thesis) {
+
+        String[] columns = {
+                DatabaseContract.ThesesTable.COLUMN_TITLE,
+                DatabaseContract.ThesesTable.COLUMN_DETAILS,
+                DatabaseContract.ThesesTable.COLUMN_LEAD,
+                DatabaseContract.ThesesTable.COLUMN_IS_PICKED
+        };
+
+        String selection = DatabaseContract.ThesesTable.COLUMN_TITLE + " = ?";
+
+        String[] selectionArgs = {thesis.getTitle()};
+
+        Cursor cursor = db.query(DatabaseContract.ThesesTable.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            Thesis resultThesis = new Thesis();
+            resultThesis.setTitle(cursor.getString(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_TITLE)));
+            resultThesis.setDetails(cursor.getString(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_DETAILS)));
+            resultThesis.setLead(getTeacherName(db, cursor.getInt(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_LEAD))));
+            if (cursor.getInt(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_IS_PICKED)) == 1) {
+                resultThesis.setPicked(true);
+            } else {
+                resultThesis.setPicked(false);
+            }
+
+            cursor.close();
+
+            return resultThesis;
+        } else {
+            cursor.close();
+            return null;
+        }
+    }
+
+
+    private static Thesis getPickedThesis(SQLiteDatabase db, int thesisId) {
+        Thesis pickedThesis = new Thesis();
+
+        String[] columns = {
+                DatabaseContract.ThesesTable.COLUMN_TITLE,
+                DatabaseContract.ThesesTable.COLUMN_DETAILS,
+                DatabaseContract.ThesesTable.COLUMN_LEAD,
+                DatabaseContract.ThesesTable.COLUMN_IS_PICKED
+        };
+
+        String selection = DatabaseContract.ThesesTable.COLUMN_THESIS_ID + " = ?";
+
+        String[] selectionArgs = {Integer.toString(thesisId)};
+
+        Cursor cursor = db.query(DatabaseContract.ThesesTable.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            pickedThesis.setTitle(cursor.getString(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_TITLE)));
+            pickedThesis.setDetails(cursor.getString(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_DETAILS)));
+            pickedThesis.setLead(getTeacherName(db, cursor.getInt(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_LEAD))));
+            if (cursor.getInt(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_DETAILS)) == 1) {
+                pickedThesis.setPicked(true);
+            } else {
+                pickedThesis.setPicked(false);
+            }
+            cursor.close();
+
+            return pickedThesis;
+        } else {
+            cursor.close();
+
+            return null;
+        }
+    }
+
+    private static String getTeacherName(SQLiteDatabase db, int teacherId) {
+
+        String[] columns = {
+                DatabaseContract.TeachersTable.COLUMN_NAME
+        };
+
+        String selection = DatabaseContract.TeachersTable.COLUMN_TEACHER_ID + " = ?";
+
+        String[] selectionArgs = {Integer.toString(teacherId)};
+
+        Cursor cursor = db.query(DatabaseContract.TeachersTable.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            String teacherName = cursor.getString(cursor.getColumnIndex(DatabaseContract.TeachersTable.COLUMN_NAME));
+
+            cursor.close();
+
+            return teacherName;
+        } else {
+            cursor.close();
+
+            return null;
+        }
+    }
+
+    private static int getThesisId(SQLiteDatabase db, Thesis thesis) {
+
+        String[] columns = {
+                DatabaseContract.ThesesTable.COLUMN_THESIS_ID
+        };
+
+        String selection = DatabaseContract.ThesesTable.COLUMN_TITLE + " = ?";
+
+        String[] selectionArgs = {thesis.getTitle()};
+
+        Cursor cursor = db.query(DatabaseContract.ThesesTable.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            int thesisId = cursor.getInt(cursor.getColumnIndex(DatabaseContract.ThesesTable.COLUMN_THESIS_ID));
+            cursor.close();
+
+            return thesisId;
+        } else {
+            cursor.close();
+
+            return 0;
+        }
+    }
+
+    private static int getTeacherId(SQLiteDatabase db, String teacher) {
+
+        Cursor cursor = db.rawQuery(DatabaseContract.SQL_SELECT_RANDOM_TEACHER, new String[]{teacher});
+
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            int teacherId = cursor.getInt(cursor.getColumnIndex(DatabaseContract.TeachersTable.COLUMN_TEACHER_ID));
+            cursor.close();
+
+            return teacherId;
+        } else {
+            cursor.close();
+
+            return 0;
         }
     }
 }

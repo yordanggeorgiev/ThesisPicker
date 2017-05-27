@@ -24,7 +24,10 @@ import com.example.jgeorgiev.thesispicker.models.Thesis;
 
 import java.util.List;
 
-
+/**
+ * The main activity of the app
+ * Created by jgeorgiev on 5/20/17.
+ */
 public class ThesisPickerActivity extends AppCompatActivity {
 
     private static SQLiteDatabase database;
@@ -80,7 +83,6 @@ public class ThesisPickerActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        Menu menu = navigationView.getMenu();
 
         setup();
 
@@ -130,30 +132,21 @@ public class ThesisPickerActivity extends AppCompatActivity {
     }
 
     private void drawerIconClicked() {
-        if (getFragmentManager().getBackStackEntryCount() > 1) { // if it is back
+        if (getFragmentManager().getBackStackEntryCount() > 1) {
             onBackPressed();
-        } else if (!drawer.isDrawerOpen(GravityCompat.START)) { // if it is hamburger
+        } else if (!drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.openDrawer(GravityCompat.START);
         }
-    }
-
-    public void checkDrawerItemAtPosition(final int position) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                navigationView.getMenu().getItem(position).setChecked(true);
-            }
-        });
-    }
-
-    public void setDrawerItemCheckable(int position, boolean isCheckable) {
-        navigationView.getMenu().getItem(position).setCheckable(isCheckable);
     }
 
     public void createMaterialToolbar(boolean isHome, String title) {
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
         toolbar.setTitle(title);
-        toolbar.setNavigationIcon(isHome ? R.drawable.icon_hamburger_menu : R.drawable.icon_arrow_back);
+        if (isHome) {
+            toolbar.setNavigationIcon(R.drawable.icon_hamburger_menu);
+        } else {
+            toolbar.setNavigationIcon(null);
+        }
     }
 
     private void setup() {
@@ -188,11 +181,6 @@ public class ThesisPickerActivity extends AppCompatActivity {
 
     public DrawerHelper getDrawerHelper() {
         return drawerHelper;
-    }
-
-    public void setSessionExpired() {
-        frgHelper.removeAllFragments();
-        frgHelper.addFragment(new LoginFragment());
     }
 }
 

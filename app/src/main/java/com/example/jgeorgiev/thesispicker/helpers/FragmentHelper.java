@@ -4,14 +4,14 @@ package com.example.jgeorgiev.thesispicker.helpers;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
-import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
+import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
 
 /**
- * Created by jgeorgiev on 5/21/17.
+ * Fragment for student info
+ * Created by ygeorgiev on 21-May-17.
  */
-
 public class FragmentHelper implements FragmentManager.OnBackStackChangedListener {
 
     private final ThesisPickerActivity activity;
@@ -24,7 +24,6 @@ public class FragmentHelper implements FragmentManager.OnBackStackChangedListene
     public void onBackStackChanged() {
         int count = activity.getFragmentManager().getBackStackEntryCount();
         if (count > 0) {
-            // get last
             FragmentManager.BackStackEntry entry = activity.getFragmentManager().getBackStackEntryAt(count - 1);
             Fragment f = activity.getFragmentManager().findFragmentByTag(entry.getName());
             if (f != null) {
@@ -52,35 +51,10 @@ public class FragmentHelper implements FragmentManager.OnBackStackChangedListene
         addFragment(fragment);
     }
 
-    public void removeLastFragment() {
-        if (activity.isFinishing() || activity.isDestroyed()) {
-            return; // Do nothing if activity is destroyed
-        }
-        activity.getFragmentManager().popBackStack();
-    }
-
     public void removeAllFragments() {
         if (activity.isFinishing() || activity.isDestroyed()) {
-            return; // Do nothing if activity is destroyed
+            return;
         }
         activity.getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-    }
-
-    public void goToFragment(String tag) {
-        if (activity.isFinishing() || activity.isDestroyed()) {
-            return; // Do nothing if activity is destroyed
-        }
-        activity.getFragmentManager().popBackStackImmediate(tag, 0);
-    }
-
-    public void goToFragmentSlow(String tag) {
-        if (activity.isFinishing() || activity.isDestroyed()) {
-            return; // Do nothing if activity is destroyed
-        }
-        activity.getFragmentManager().popBackStack(tag, 0);
-    }
-
-    public Fragment getFragmentByTag(String tag) {
-        return activity.getFragmentManager().findFragmentByTag(tag);
     }
 }

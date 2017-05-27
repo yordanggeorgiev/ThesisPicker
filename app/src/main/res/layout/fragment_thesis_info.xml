@@ -17,11 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="@string/name"
+            android:text="@string/thesis_title"
             android:textColor="@color/colorAccent" />
 
         <TextView
-            android:id="@+id/teacher_names"
+            android:id="@+id/thesis_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
@@ -32,11 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/teacher_phone"
+            android:text="@string/thesis_details"
             android:textColor="@color/colorAccent" />
 
         <TextView
-            android:id="@+id/teacher_number"
+            android:id="@+id/thesis_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
@@ -47,17 +47,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/teacher_email"
+            android:text="@string/thesis_lead"
             android:textColor="@color/colorAccent" />
 
         <TextView
-            android:id="@+id/teacher_email"
+            android:id="@+id/thesis_lead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="3dp"
+            android:textColor="@color/gray" />
+
+        <Button
+            android:id="@+id/btn_choose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginBottom="30dp"
-            android:layout_marginTop="3dp"
-            android:textColor="@color/gray" />
+            android:visibility="gone"
+            android:text="@string/button_choose"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button"/>
 
+        <Button
+            android:id="@+id/btn_cant_choose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
+            android:text="@string/button_choose"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button_already_chosen"/>
     </LinearLayout>
 </LinearLayout>

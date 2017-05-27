@@ -14,14 +14,11 @@ import com.example.jgeorgiev.thesispicker.models.Thesis;
 import java.util.List;
 
 /**
+ * Adapter to populate ThesisListFragment
  * Created by ygeorgiev on 25-May-17.
  */
 
 public class ThesisListAdapter extends ArrayAdapter<Thesis> {
-
-    public ThesisListAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
-    }
 
     public ThesisListAdapter(Context context, int resource, List<Thesis> theses) {
         super(context, resource, theses);

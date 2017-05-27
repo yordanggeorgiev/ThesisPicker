@@ -13,16 +13,17 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
-import com.example.jgeorgiev.thesispicker.database.GetTeachersListTask;
-import com.example.jgeorgiev.thesispicker.database.GetThesisListTask;
 import com.example.jgeorgiev.thesispicker.fragments.LoginFragment;
 import com.example.jgeorgiev.thesispicker.fragments.StudentInfoFragment;
 import com.example.jgeorgiev.thesispicker.fragments.TeacherListFragment;
 import com.example.jgeorgiev.thesispicker.fragments.ThesisListFragment;
+import com.example.jgeorgiev.thesispicker.tasks.GetTeachersListTask;
+import com.example.jgeorgiev.thesispicker.tasks.GetThesisListTask;
 import com.example.jgeorgiev.thesispicker.utils.Logger;
 
 
 /**
+ * Helper for the drawer menu
  * Created by jgeorgiev on 5/21/17.
  */
 
@@ -103,11 +104,6 @@ public class DrawerHelper implements NavigationView.OnNavigationItemSelectedList
     public void lockDrawer() {
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
-
-    public void unlockDrawer() {
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-    }
-
 }
 
 

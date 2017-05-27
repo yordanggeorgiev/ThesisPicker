@@ -15,13 +15,17 @@ import android.widget.ListView;
 
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
-import com.example.jgeorgiev.thesispicker.database.GetTeacherInfoTask;
 import com.example.jgeorgiev.thesispicker.interfaces.Stackable;
 import com.example.jgeorgiev.thesispicker.models.Teacher;
+import com.example.jgeorgiev.thesispicker.tasks.GetTeacherInfoTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Fragment for teacher list
+ * Created by ygeorgiev on 25-May-17.
+ */
 public class TeacherListFragment extends Fragment implements Stackable {
 
     List<String> teachersNames = new ArrayList<>();
@@ -41,12 +45,10 @@ public class TeacherListFragment extends Fragment implements Stackable {
         ArrayAdapter<String> teachersNamesAdapter = new ArrayAdapter<>(getActivity(), R.layout.teacher_list_entries, R.id.teacher_name, teachersNames);
         ListView lv = (ListView) view.findViewById(R.id.thesis_list);
         lv.setAdapter(teachersNamesAdapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
-                                    long arg3)
-            {
+                                    long arg3) {
                 String teacher = (String) adapter.getItemAtPosition(position);
                 new GetTeacherInfoTask((ThesisPickerActivity) getActivity(), ThesisPickerActivity.getDatabase(), teacher).execute();
             }
@@ -61,7 +63,7 @@ public class TeacherListFragment extends Fragment implements Stackable {
         if (actionBar != null) {
             actionBar.show();
         }
-        ((ThesisPickerActivity) getActivity()).createMaterialToolbar(false, getActivity().getString(R.string.menu_teachers));
+        ((ThesisPickerActivity) getActivity()).createMaterialToolbar(true, getActivity().getString(R.string.menu_teachers));
         ((ThesisPickerActivity) getActivity()).getDrawerHelper().lockDrawer();
     }
 

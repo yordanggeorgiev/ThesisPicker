@@ -3,37 +3,38 @@ package com.example.jgeorgiev.thesispicker.utils;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
+ * Sample data to populate the tables in the db
  * Created by jgeorgiev on 5/24/17.
  */
 
 public class SampleData {
-    private SampleData (){
+    private SampleData() {
         //empty constructor
     }
 
-    public static void InsertSampleData(SQLiteDatabase db){
-        if(db != null && db.isOpen()){
+    public static void InsertSampleData(SQLiteDatabase db) {
+        if (db != null && db.isOpen()) {
             //teachers
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (1,'доц. С. Стоянова','stoyanova@gmail.com',0888987861)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (2,'проф. Р.Кирилов','kirilov@gmail.com',0888987862)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (3,'доц. Моника Цанева','caneva@gmail.com',0888987863)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (4,'доц. Камелия Стефанова','stefanova@gmail.com',0888987864)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (5,'проф. Желязко Желязков','zheliazkov@gmail.com',0888987865)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (6,'доц. Емил Денчев','denchev@gmail.com',0888987866)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (7,'проф. Ваня Лазарова','lazarova@gmail.com',0888987867)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (8,'доц. А. Мурджева','murdzheva@gmail.com',0888987868)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (9,'гл.ас. Митко Радоев','radoev@gmail.com',0888987869)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (10,'гл.ас. Илко Великов','velikov@gmail.com',0888987860)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (11,'доц. С. Петрова','petrova@gmail.com',0888987811)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (12,'проф. Р.Иванова','ivanova@gmail.com',0888987822)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (13,'доц. Росица Димитрова','dimitrova@gmail.com',0888987833)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (14,'доц. Гергана Георгиева','georgieva@gmail.com',0888987844)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (15,'проф. Михаил Михайлов','mihailov@gmail.com',0888987855)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (16,'доц. Емил Александров','aleksandrov@gmail.com',0888987806)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (17,'проф. Ваня Горанова','goranova@gmail.com',0888987877)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (18,'доц. А. Мерджова','merdzhova@gmail.com',0888987888)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (19,'гл.ас. Митко Стоев','stoev@gmail.com',0888987899)");
-            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (20,'гл.ас. Илия Луков','lukov@gmail.com',0888987800)");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (1,'доц. С. Стоянова','stoyanova@gmail.com','0888987861')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (2,'проф. Р.Кирилов','kirilov@gmail.com','0888987862')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (3,'доц. Моника Цанева','caneva@gmail.com','0888987863')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (4,'доц. Камелия Стефанова','stefanova@gmail.com','0888987864')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (5,'проф. Желязко Желязков','zheliazkov@gmail.com','0888987865')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (6,'доц. Емил Денчев','denchev@gmail.com','0888987866')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (7,'проф. Ваня Лазарова','lazarova@gmail.com','0888987867')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (8,'доц. А. Мурджева','murdzheva@gmail.com','0888987868')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (9,'гл.ас. Митко Радоев','radoev@gmail.com','0888987869')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (10,'гл.ас. Илко Великов','velikov@gmail.com','0888987860')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (11,'доц. С. Петрова','petrova@gmail.com','0888987811')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (12,'проф. Р.Иванова','ivanova@gmail.com','0888987822')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (13,'доц. Росица Димитрова','dimitrova@gmail.com','0888987833')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (14,'доц. Гергана Георгиева','georgieva@gmail.com','0888987844')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (15,'проф. Михаил Михайлов','mihailov@gmail.com','0888987855')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (16,'доц. Емил Александров','aleksandrov@gmail.com','0888987806')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (17,'проф. Ваня Горанова','goranova@gmail.com','0888987877')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (18,'доц. А. Мерджова','merdzhova@gmail.com','0888987888')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (19,'гл.ас. Митко Стоев','stoev@gmail.com','0888987899')");
+            db.execSQL("INSERT INTO teachers (teacher_id,teacher_name,email,phone) VALUES (20,'гл.ас. Илия Луков','lukov@gmail.com','0888987800')");
 
             //theses
             db.execSQL("INSERT INTO theses (thesis_id,title,details,lead,is_picked) VALUES (1,'Информационна система за продажби в магазин за дрехи','Темата е свързана с проектирането и изграждането на компютърни информационни системи за управление продажбите в магазин за дрехи. Темата предполага и изисква познания в областта на продажбите и счетоводството.',10,0)");

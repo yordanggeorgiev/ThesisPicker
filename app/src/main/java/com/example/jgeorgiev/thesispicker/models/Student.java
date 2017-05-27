@@ -1,18 +1,18 @@
 package com.example.jgeorgiev.thesispicker.models;
 
 /**
- * Created by jgeorgiev on 4/23/17.
+ * Student model
+ * Created by ygeorgiev on 20-May-17.
  */
-
 public class Student {
 
-    public String name;
-    public int facultyNumber;
-    public String specialty;
-    public int adminGroup;
-    public boolean isBachelor;
-    public Thesis thesis;
-    public String reviewer;
+    private String name;
+    private int facultyNumber;
+    private String specialty;
+    private int adminGroup;
+    private boolean isBachelor;
+    private Thesis thesis;
+    private String reviewer;
 
     public String getName() {
         return name;

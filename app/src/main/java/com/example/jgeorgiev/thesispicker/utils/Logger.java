@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.jgeorgiev.thesispicker.interfaces.LogWrapper;
 
 /**
+ * Logger
  * Created by jgeorgiev on 5/21/17.
  */
 
@@ -13,7 +14,6 @@ public class Logger implements LogWrapper {
     private static Logger logger;
 
     private Logger() {
-        // nothing to do
     }
 
     public static LogWrapper getInstance() {

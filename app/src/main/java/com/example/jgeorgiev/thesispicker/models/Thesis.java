@@ -1,15 +1,15 @@
 package com.example.jgeorgiev.thesispicker.models;
 
 /**
- * Created by jgeorgiev on 4/23/17.
+ * Thesis
+ * Created by ygeorgiev on 20-May-17.
  */
-
 public class Thesis {
 
-    public String title;
-    public String details;
-    public String lead;
-    public boolean isPicked;
+    private String title;
+    private String details;
+    private String lead;
+    private boolean isPicked;
 
     public String getTitle() {
         return title;

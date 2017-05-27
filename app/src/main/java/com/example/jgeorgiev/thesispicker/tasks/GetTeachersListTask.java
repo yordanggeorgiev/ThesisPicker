@@ -1,4 +1,4 @@
-package com.example.jgeorgiev.thesispicker.database;
+package com.example.jgeorgiev.thesispicker.tasks;
 
 import android.app.ProgressDialog;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,24 +6,25 @@ import android.os.AsyncTask;
 
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
-import com.example.jgeorgiev.thesispicker.fragments.StudentInfoFragment;
-import com.example.jgeorgiev.thesispicker.fragments.ThesisListFragment;
-import com.example.jgeorgiev.thesispicker.models.Thesis;
+import com.example.jgeorgiev.thesispicker.database.DatabaseUtils;
+import com.example.jgeorgiev.thesispicker.fragments.TeacherListFragment;
+import com.example.jgeorgiev.thesispicker.models.Teacher;
 
 import java.util.List;
 
 /**
+ * Async task to get teacher list from db
  * Created by jgeorgiev on 5/24/17.
  */
 
-public class GetThesisListTask extends AsyncTask<Void, Void, List<Thesis>> {
+public class GetTeachersListTask extends AsyncTask<Void, Void, List<Teacher>> {
 
     private ThesisPickerActivity activity;
     private SQLiteDatabase database;
     private ProgressDialog pd;
 
 
-    public GetThesisListTask(ThesisPickerActivity activity, SQLiteDatabase database) {
+    public GetTeachersListTask(ThesisPickerActivity activity, SQLiteDatabase database) {
         if (database == null) {
             throw new AssertionError("Database is required.");
         }
@@ -42,18 +43,18 @@ public class GetThesisListTask extends AsyncTask<Void, Void, List<Thesis>> {
     }
 
     @Override
-    protected List<Thesis> doInBackground(Void... objects) {
-        return database.isOpen() ? DatabaseUtils.getAllTheses(database) : null;
+    protected List<Teacher> doInBackground(Void... objects) {
+        return database.isOpen() ? DatabaseUtils.getAllTeachers(database) : null;
     }
 
     @Override
-    protected void onPostExecute(List<Thesis> theses) {
+    protected void onPostExecute(List<Teacher> teachers) {
         pd.dismiss();
 
-        ThesisPickerActivity.setThesisList(theses);
-        activity.getFragmentHelper().addFragment(new ThesisListFragment(), true);
+        ThesisPickerActivity.setTeachersList(teachers);
+        activity.getFragmentHelper().addFragment(new TeacherListFragment(), true);
 
-        super.onPostExecute(theses);
+        super.onPostExecute(teachers);
     }
 }
 

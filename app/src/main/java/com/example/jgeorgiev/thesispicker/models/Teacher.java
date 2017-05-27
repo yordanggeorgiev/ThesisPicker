@@ -1,14 +1,14 @@
 package com.example.jgeorgiev.thesispicker.models;
 
 /**
- * Created by jgeorgiev on 4/23/17.
+ * Teacher model
+ * Created by ygeorgiev on 20-May-17.
  */
-
 public class Teacher {
 
-    public String name;
-    public String email;
-    public String phone;
+    private String name;
+    private String email;
+    private String phone;
 
     public String getName() {
         return name;

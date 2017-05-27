@@ -1,4 +1,4 @@
-package com.example.jgeorgiev.thesispicker.database;
+package com.example.jgeorgiev.thesispicker.tasks;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -8,10 +8,12 @@ import android.os.AsyncTask;
 
 import com.example.jgeorgiev.thesispicker.R;
 import com.example.jgeorgiev.thesispicker.ThesisPickerActivity;
+import com.example.jgeorgiev.thesispicker.database.DatabaseUtils;
 import com.example.jgeorgiev.thesispicker.fragments.StudentInfoFragment;
 import com.example.jgeorgiev.thesispicker.models.Student;
 
 /**
+ * Async task to get student info from db
  * Created by jgeorgiev on 5/24/17.
  */
 

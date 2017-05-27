@@ -2,16 +2,13 @@ package com.example.jgeorgiev.thesispicker.database;
 
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.jgeorgiev.thesispicker.models.Student;
-import com.example.jgeorgiev.thesispicker.models.Teacher;
-import com.example.jgeorgiev.thesispicker.models.Thesis;
 import com.example.jgeorgiev.thesispicker.utils.SampleData;
 
 /**
+ * DatabaseHelper for the SQLiteDatabase
  * Created by jgeorgiev on 4/23/17.
  */
 
